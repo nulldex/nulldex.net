@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nulldex — Websites, Apps & Games</title>
+  <meta name="description" content="Nulldex is an independent dev studio building fast websites, useful web apps and browser games.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta property="og:title" content="Nulldex — Websites, Apps & Games">
+  <meta property="og:description" content="Independent dev studio building fast websites, useful web apps and browser games.">
+  <meta property="og:image" content="https://nulldex.net/assets/icon-512.png">
+  <link rel="preload" href="assets/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="logo" aria-label="Nulldex home"><img src="assets/logo-full.png" alt="nulldex" class="logo-img" width="154" height="22"></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact" class="btn btn-small">Start a project</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle light / dark">◐</button>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-code" aria-hidden="true">
+        <div class="code-window">
+          <div class="code-bar"><span class="mono" id="codeFile">studio.js</span></div>
+          <pre class="code mono"><code id="typed"></code></pre>
+        </div>
+      </div>
+      <div class="container hero-inner">
+        <p class="eyebrow mono"><span class="dot"></span> available for new projects</p>
+        <h1>Websites, apps<br>&amp; games, built<br><span class="slant">from null.</span></h1>
+        <p class="lead">
+          Nulldex is an independent dev studio. I make fast, clean websites, useful web apps and fun browser games,
+          and I help small businesses get online and turn ideas into working products.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn">Start a project</a>
+          <a href="#work" class="btn btn-ghost">See the work →</a>
+        </div>
+        <ul class="stats">
+          <li><span class="mono">01</span><strong>Fast</strong><p>Lightweight sites that load in under a second.</p></li>
+          <li><span class="mono">02</span><strong>Mobile-first</strong><p>Looks sharp on every screen.</p></li>
+          <li><span class="mono">03</span><strong>Fair pricing</strong><p>Clear quotes, no surprises.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label mono">01 / work</span>
+          <h2 class="section-title">Selected work</h2>
+          <p class="section-sub">Real projects, built and launched. More on the way.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div class="project-thumb">
+              <div class="mock">
+                <div class="mock-head mono">week_plan.json</div>
+                <div class="mock-row"><b class="mono">MON</b> Chicken stir-fry</div>
+                <div class="mock-row"><b class="mono">TUE</b> Lentil soup</div>
+                <div class="mock-row"><b class="mono">WED</b> Veggie tacos</div>
+                <div class="mock-foot mono">→ 14 groceries generated</div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="tags"><span class="tag tag-active">in development</span><span class="tag">web app</span><span class="tag">offline</span></div>
+              <h3>Meal Planner</h3>
+              <p>Plan your week and get your grocery list automatically. Free, no account, works offline. Built for people left behind when a popular meal-planning app shut down.</p>
+              <a class="link" href="#" aria-disabled="true">Live demo — soon</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-thumb">
+              <div class="game-art">
+                <span class="pix p1"></span><span class="pix p2"></span><span class="pix p3"></span>
+                <span class="game-label mono">press start</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="tags"><span class="tag">coming soon</span><span class="tag">browser game</span></div>
+              <h3>Browser Game</h3>
+              <p>A quick, chaotic, shareable game that runs instantly in your browser. No download, no sign-up.</p>
+              <a class="link" href="#" aria-disabled="true">Play — soon</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-thumb">
+              <div class="mock mock-site">
+                <div class="mock-bar"><i></i><i></i><i></i></div>
+                <div class="mock-hero">Bella Cucina</div>
+                <div class="mock-sub">Fresh pasta · Since 1998</div>
+                <div class="mock-btn">Book a table</div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="tags"><span class="tag">coming soon</span><span class="tag">business site</span></div>
+              <h3>Restaurant Website</h3>
+              <p>A sample site for a local restaurant: menu, opening hours, map and table booking. It shows what your business could look like online.</p>
+              <a class="link" href="#" aria-disabled="true">View demo — soon</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label mono">02 / services</span>
+          <h2 class="section-title">What I build</h2>
+          <p class="section-sub">Small, focused projects done properly.</p>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <span class="card-num mono">01</span>
+            <h3>Business websites</h3>
+            <p>A modern site for your shop, restaurant, salon or service, with contact forms, maps and booking links. Easy for customers to find on Google.</p>
+          </div>
+          <div class="card">
+            <span class="card-num mono">02</span>
+            <h3>Web apps &amp; tools</h3>
+            <p>Calculators, planners, dashboards and booking tools: custom software that saves you or your customers time.</p>
+          </div>
+          <div class="card">
+            <span class="card-num mono">03</span>
+            <h3>Browser games</h3>
+            <p>Simple, fun games for promotions, events or just for fun. They run instantly on any phone or computer.</p>
+          </div>
+          <div class="card">
+            <span class="card-num mono">04</span>
+            <h3>Fixes &amp; redesigns</h3>
+            <p>Slow, outdated or broken website? I'll speed it up, make it work on phones and give it a fresh look.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label mono">03 / process</span>
+          <h2 class="section-title">How it works</h2>
+          <p class="section-sub">Simple and transparent from first message to launch.</p>
+        </div>
+        <ol class="steps">
+          <li><span class="step-num mono">01</span><h3>Talk</h3><p>Tell me what you need. I'll ask a few questions and send a clear quote.</p></li>
+          <li><span class="step-num mono">02</span><h3>Design</h3><p>You get a first version quickly and we adjust it together until it's right.</p></li>
+          <li><span class="step-num mono">03</span><h3>Build</h3><p>Fast, mobile-friendly and easy to find on Google.</p></li>
+          <li><span class="step-num mono">04</span><h3>Launch</h3><p>I put it online and show you how to update it. Support included.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-alt">
+      <div class="container contact">
+        <div>
+          <span class="section-label mono">04 / contact</span>
+          <h2 class="section-title">Let's build something.</h2>
+          <p class="section-sub">Have an idea or need a website? Send a message. I reply within 24 hours.</p>
+          <ul class="contact-list">
+            <li><span class="mono">email</span><a href="mailto:contact@nulldex.net">contact@nulldex.net</a></li>
+            <li><span class="mono">based</span>Croatia · working remotely worldwide</li>
+          </ul>
+        </div>
+        <form class="form" id="contactForm">
+          <label>Name<input type="text" name="name" required placeholder="Your name"></label>
+          <label>Email<input type="email" name="email" required placeholder="you@company.com"></label>
+          <label>What do you need?
+            <select name="type">
+              <option>Business website</option>
+              <option>Web app / tool</option>
+              <option>Browser game</option>
+              <option>Fix / redesign</option>
+              <option>Something else</option>
+            </select>
+          </label>
+          <label>Message<textarea name="message" rows="4" required placeholder="Tell me a bit about your project…"></textarea></label>
+          <button class="btn" type="submit">Send message</button>
+          <p class="form-note" id="formNote">Opens your email app with the message filled in.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <img src="assets/logo-full.png" alt="nulldex" class="logo-img footer-logo" width="126" height="18" loading="lazy">
+      <span class="mono">© <span id="year"></span> nulldex</span>
+      <a href="#top" class="mono">back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
