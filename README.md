@@ -15,6 +15,7 @@ The website of **Nulldex**, an independent dev studio building websites, web app
 - **Self-hosted variable fonts** (Outfit, Inter, JetBrains Mono), preloaded so text doesn't shift while loading.
 - **Respects `prefers-reduced-motion`.** Animations turn off for people who ask for less motion.
 - **Mobile-first and responsive**, down to small phones.
+- **English and Croatian.** Croatian visitors are sent to `/hr/` by the server, based on browser language or Cloudflare geolocation, so there's no flash of the wrong language. A manual EN/HR switch always wins, and `hreflang` tags tell search engines about both versions.
 
 ## Hosting
 
@@ -25,7 +26,8 @@ The website of **Nulldex**, an independent dev studio building websites, web app
 ## Structure
 
 ```
-index.html     page markup
+index.html     page markup (English)
+hr/index.html  Croatian version
 style.css      design system + layout
 script.js      theme toggle, typing animation, contact form
 assets/        logo, icons, self-hosted fonts

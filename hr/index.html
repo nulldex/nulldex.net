@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nulldex — Web stranice, aplikacije i igre</title>
+  <meta name="description" content="Nulldex je neovisni dev studio koji izrađuje brze web stranice, korisne web aplikacije i igre za preglednik.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="/assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <meta property="og:title" content="Nulldex — Web stranice, aplikacije i igre">
+  <meta property="og:description" content="Neovisni dev studio: brze web stranice, korisne web aplikacije i igre za preglednik.">
+  <meta property="og:image" content="https://nulldex.net/assets/icon-512.png">
+  <meta property="og:locale" content="hr_HR">
+  <link rel="preload" href="/assets/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="alternate" hreflang="en" href="https://nulldex.net/">
+  <link rel="alternate" hreflang="hr" href="https://nulldex.net/hr/">
+  <link rel="alternate" hreflang="x-default" href="https://nulldex.net/">
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="logo" aria-label="Nulldex početna"><img src="/assets/logo-full.png" alt="nulldex" class="logo-img" width="154" height="22"></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#work">Radovi</a>
+        <a href="#services">Usluge</a>
+        <a href="#process">Proces</a>
+        <a href="#contact" class="btn btn-small">Započnite projekt</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/" class="icon-btn lang-btn mono" data-lang="en" hreflang="en" title="English">EN</a>
+        <button class="icon-btn" id="themeToggle" aria-label="Promijeni svijetlu / tamnu temu">◐</button>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Otvori izbornik">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-code" aria-hidden="true">
+        <div class="code-window">
+          <div class="code-bar"><span class="mono" id="codeFile">studio.js</span></div>
+          <pre class="code mono"><code id="typed"></code></pre>
+        </div>
+      </div>
+      <div class="container hero-inner">
+        <p class="eyebrow mono"><span class="dot"></span> dostupan za nove projekte</p>
+        <h1>Web stranice,<br>aplikacije i igre.<br><span class="slant">Od nule.</span></h1>
+        <p class="lead">
+          Nulldex je neovisni dev studio. Izrađujem brze i uredne web stranice, korisne web aplikacije i zabavne igre za preglednik,
+          te pomažem malim tvrtkama da se pojave na internetu i pretvore ideje u proizvode koji stvarno rade.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn">Započnite projekt</a>
+          <a href="#work" class="btn btn-ghost">Pogledajte radove →</a>
+        </div>
+        <ul class="stats">
+          <li><span class="mono">01</span><strong>Brzo</strong><p>Lagane stranice koje se učitaju za manje od sekunde.</p></li>
+          <li><span class="mono">02</span><strong>Prvo mobitel</strong><p>Odlično izgleda na svakom ekranu.</p></li>
+          <li><span class="mono">03</span><strong>Poštene cijene</strong><p>Jasne ponude, bez iznenađenja.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RADOVI -->
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label mono">01 / radovi</span>
+          <h2 class="section-title">Odabrani radovi</h2>
+          <p class="section-sub">Stvarni projekti, izrađeni i objavljeni. Uskoro još.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div class="project-thumb">
+              <div class="mock">
+                <div class="mock-head mono">tjedni_plan.json</div>
+                <div class="mock-row"><b class="mono">PON</b> Piletina s povrćem</div>
+                <div class="mock-row"><b class="mono">UTO</b> Juha od leće</div>
+                <div class="mock-row"><b class="mono">SRI</b> Tortilje s povrćem</div>
+                <div class="mock-foot mono">→ 14 namirnica na popisu</div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="tags"><span class="tag tag-active">u izradi</span><span class="tag">web aplikacija</span><span class="tag">offline</span></div>
+              <h3>Planer obroka</h3>
+              <p>Isplanirajte tjedan i automatski dobijte popis za kupnju. Besplatno, bez računa, radi i bez interneta. Napravljen za korisnike koji su ostali bez omiljene aplikacije za planiranje obroka kad je ugašena.</p>
+              <a class="link" href="#" aria-disabled="true">Demo — uskoro</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-thumb">
+              <div class="game-art">
+                <span class="pix p1"></span><span class="pix p2"></span><span class="pix p3"></span>
+                <span class="game-label mono">press start</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="tags"><span class="tag">uskoro</span><span class="tag">igra za preglednik</span></div>
+              <h3>Igra za preglednik</h3>
+              <p>Brza, kaotična igra koju je zabavno dijeliti. Pokreće se odmah u pregledniku, bez preuzimanja i bez registracije.</p>
+              <a class="link" href="#" aria-disabled="true">Igraj — uskoro</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-thumb">
+              <div class="mock mock-site">
+                <div class="mock-bar"><i></i><i></i><i></i></div>
+                <div class="mock-hero">Bella Cucina</div>
+                <div class="mock-sub">Svježa tjestenina · Od 1998.</div>
+                <div class="mock-btn">Rezerviraj stol</div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="tags"><span class="tag">uskoro</span><span class="tag">poslovna stranica</span></div>
+              <h3>Web stranica restorana</h3>
+              <p>Primjer stranice za lokalni restoran: jelovnik, radno vrijeme, karta i rezervacija stola. Pokazuje kako bi vaš posao mogao izgledati na internetu.</p>
+              <a class="link" href="#" aria-disabled="true">Pogledaj demo — uskoro</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- USLUGE -->
+    <section id="services" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label mono">02 / usluge</span>
+          <h2 class="section-title">Što izrađujem</h2>
+          <p class="section-sub">Mali, fokusirani projekti, napravljeni kako treba.</p>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <span class="card-num mono">01</span>
+            <h3>Poslovne web stranice</h3>
+            <p>Moderna stranica za vaš dućan, restoran, salon ili uslugu, s kontakt obrascem, kartom i rezervacijama. Kupci vas lako pronađu na Googleu.</p>
+          </div>
+          <div class="card">
+            <span class="card-num mono">02</span>
+            <h3>Web aplikacije i alati</h3>
+            <p>Kalkulatori, planeri, nadzorne ploče i sustavi za rezervacije: softver po mjeri koji vama ili vašim kupcima štedi vrijeme.</p>
+          </div>
+          <div class="card">
+            <span class="card-num mono">03</span>
+            <h3>Igre za preglednik</h3>
+            <p>Jednostavne, zabavne igre za promocije, događaje ili samo za zabavu. Rade odmah na svakom mobitelu i računalu.</p>
+          </div>
+          <div class="card">
+            <span class="card-num mono">04</span>
+            <h3>Popravci i redizajn</h3>
+            <p>Spora, zastarjela ili neispravna stranica? Ubrzat ću je, prilagoditi mobitelima i dati joj svjež izgled.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCES -->
+    <section id="process" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label mono">03 / proces</span>
+          <h2 class="section-title">Kako to ide</h2>
+          <p class="section-sub">Jednostavno i transparentno, od prve poruke do objave.</p>
+        </div>
+        <ol class="steps">
+          <li><span class="step-num mono">01</span><h3>Razgovor</h3><p>Recite mi što trebate. Postavit ću nekoliko pitanja i poslati jasnu ponudu.</p></li>
+          <li><span class="step-num mono">02</span><h3>Dizajn</h3><p>Brzo dobivate prvu verziju i zajedno je dorađujemo dok ne bude kako treba.</p></li>
+          <li><span class="step-num mono">03</span><h3>Izrada</h3><p>Brzo, prilagođeno mobitelima i lako za pronaći na Googleu.</p></li>
+          <li><span class="step-num mono">04</span><h3>Objava</h3><p>Postavim stranicu na internet i pokažem vam kako je ažurirati. Podrška je uključena.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="contact" class="section section-alt">
+      <div class="container contact">
+        <div>
+          <span class="section-label mono">04 / kontakt</span>
+          <h2 class="section-title">Napravimo nešto.</h2>
+          <p class="section-sub">Imate ideju ili trebate web stranicu? Pošaljite poruku, odgovaram unutar 24 sata.</p>
+          <ul class="contact-list">
+            <li><span class="mono">e-mail</span><a href="mailto:contact@nulldex.net">contact@nulldex.net</a></li>
+            <li><span class="mono">lokacija</span>Hrvatska · radim i na daljinu, za klijente iz cijelog svijeta</li>
+          </ul>
+        </div>
+        <form class="form" id="contactForm">
+          <label>Ime<input type="text" name="name" required placeholder="Vaše ime"></label>
+          <label>E-mail<input type="email" name="email" required placeholder="vi@tvrtka.hr"></label>
+          <label>Što vam treba?
+            <select name="type">
+              <option>Poslovna web stranica</option>
+              <option>Web aplikacija / alat</option>
+              <option>Igra za preglednik</option>
+              <option>Popravak / redizajn</option>
+              <option>Nešto drugo</option>
+            </select>
+          </label>
+          <label>Poruka<textarea name="message" rows="4" required placeholder="Napišite nešto o svom projektu…"></textarea></label>
+          <button class="btn" type="submit">Pošalji poruku</button>
+          <p class="form-note" id="formNote">Otvara vašu aplikaciju za e-poštu s već ispunjenom porukom.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <img src="/assets/logo-full.png" alt="nulldex" class="logo-img footer-logo" width="126" height="18" loading="lazy">
+      <span class="mono">© <span id="year"></span> nulldex</span>
+      <a href="#top" class="mono">natrag na vrh ↑</a>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

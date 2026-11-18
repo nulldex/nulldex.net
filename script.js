@@ -1,4 +1,10 @@
 const CONTACT_EMAIL = "contact@nulldex.net";
+const HR = document.documentElement.lang === "hr";
+
+// Language switch: remember the visitor's choice (the server reads this cookie)
+document.querySelectorAll("[data-lang]").forEach(a => a.addEventListener("click", () => {
+  document.cookie = `lang=${a.dataset.lang}; path=/; max-age=31536000; SameSite=Lax`;
+}));
 
 // Year in footer
 document.getElementById("year").textContent = new Date().getFullYear();
@@ -24,7 +30,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click
 // ===== Self-typing code editor in the hero =====
 const SNIPPETS = [
   { file: "studio.js", code:
-`// nulldex — building from null
+`// nulldex — ${HR ? "gradimo od nule" : "building from null"}
 const studio = new Nulldex({ mode: "focused" });
 
 studio.build({
@@ -35,10 +41,10 @@ studio.build({
 
 while (ideas.length) {
   const project = ideas.shift();
-  studio.ship(project); // deployed
+  studio.ship(project); // ${HR ? "objavljeno" : "deployed"}
 }` },
   { file: "style.css", code:
-`/* make it look good */
+`/* ${HR ? "neka izgleda dobro" : "make it look good"} */
 .website {
   speed: instant;
   layout: responsive;
@@ -49,7 +55,7 @@ while (ideas.length) {
   smile: true;
 }` },
   { file: "game.js", code:
-`// tiny game loop
+`// ${HR ? "mala petlja igre" : "tiny game loop"}
 function update(player) {
   player.x += player.speed;
 
@@ -120,7 +126,9 @@ navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => na
 document.getElementById("contactForm").addEventListener("submit", e => {
   e.preventDefault();
   const f = new FormData(e.target);
-  const subject = `New project: ${f.get("type")} (from ${f.get("name")})`;
+  const subject = HR
+    ? `Novi projekt: ${f.get("type")} (${f.get("name")})`
+    : `New project: ${f.get("type")} (from ${f.get("name")})`;
   const body = `${f.get("message")}\n\n${f.get("name")}\n${f.get("email")}`;
   window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
