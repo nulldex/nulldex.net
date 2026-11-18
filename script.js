@@ -122,13 +122,38 @@ const navLinks = document.getElementById("navLinks");
 document.getElementById("menuBtn").addEventListener("click", () => navLinks.classList.toggle("open"));
 navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
 
-// Contact form → opens the visitor's email app (no server needed)
-document.getElementById("contactForm").addEventListener("submit", e => {
+// Contact form → sends to the Nulldex inbox; falls back to the visitor's email app if that fails
+const T = HR
+  ? { sending: "Šaljem…", sent: "Hvala! Poruka je poslana, javit ću vam se unutar 24 sata.", error: "Slanje nije uspjelo, otvaram vašu aplikaciju za e-poštu…" }
+  : { sending: "Sending…", sent: "Thanks! Your message was sent. I'll get back to you within 24 hours.", error: "Couldn't send, opening your email app instead…" };
+
+const form = document.getElementById("contactForm");
+const note = document.getElementById("formNote");
+form.addEventListener("submit", async e => {
   e.preventDefault();
-  const f = new FormData(e.target);
-  const subject = HR
-    ? `Novi projekt: ${f.get("type")} (${f.get("name")})`
-    : `New project: ${f.get("type")} (from ${f.get("name")})`;
-  const body = `${f.get("message")}\n\n${f.get("name")}\n${f.get("email")}`;
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const f = new FormData(form);
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true; note.textContent = T.sending; note.className = "form-note";
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ ...Object.fromEntries(f), lang: HR ? "hr" : "en" }),
+    });
+    if (res.status === 400) { note.textContent = (await res.json()).error; note.className = "form-note form-error"; return; }
+    if (!res.ok) throw new Error(res.status);
+    form.reset();
+    note.textContent = T.sent; note.className = "form-note form-ok";
+  } catch (err) {
+    note.textContent = T.error; note.className = "form-note form-error";
+    const subject = HR
+      ? `Novi projekt: ${f.get("type")} (${f.get("name")})`
+      : `New project: ${f.get("type")} (from ${f.get("name")})`;
+    const body = `${f.get("message")}\n\n${f.get("name")}\n${f.get("email")}`;
+    setTimeout(() => {
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }, 900);
+  } finally {
+    btn.disabled = false;
+  }
 });
