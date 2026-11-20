@@ -184,24 +184,54 @@ function enhanceSelect(select) {
 document.querySelectorAll(".form select").forEach(enhanceSelect);
 
 // ===== Gentle fade-up as sections scroll into view =====
-// Runs once per element. Anything already on screen when the page loads is left alone (no load flicker).
+// Runs once per element and never makes you wait:
+//  - it starts a quarter-screen BEFORE a section comes into view, so it is (almost) done when you see it
+//  - when you scroll fast or jump with a menu link, sections just appear, with no animation lagging behind
+//  - anything already on screen when the page loads is left alone (no load flicker)
 if (!reduceMotion && "IntersectionObserver" in window) {
   const groups = [".section-head", ".projects > .project", ".cards > .card", ".steps > li", ".contact > *"];
+  const pending = [];
+
+  // scroll speed in px per second
+  let lastY = scrollY, lastT = performance.now(), speed = 0;
+  addEventListener("scroll", () => {
+    // the first fast movement counts right away; slowing down fades the value out
+    const now = performance.now(), dt = Math.min(100, Math.max(1, now - lastT));
+    speed = Math.max((Math.abs(scrollY - lastY) / dt) * 1000, speed * 0.6);
+    lastY = scrollY; lastT = now;
+  }, { passive: true });
+
+  const finish = el => { el.classList.remove("reveal", "in", "instant"); el.style.removeProperty("--d"); };
+  const show = (el, instant) => {
+    const k = pending.indexOf(el);
+    if (k < 0) return;
+    pending.splice(k, 1);
+    io.unobserve(el);
+    if (instant) { el.classList.add("instant", "in"); requestAnimationFrame(() => finish(el)); return; }
+    el.classList.add("in");
+    // hand the element back to its normal styles (e.g. card hover lift) once the fade is done
+    setTimeout(() => finish(el), 900);
+  };
+
   const io = new IntersectionObserver(entries => {
     for (const en of entries) {
       if (!en.isIntersecting) continue;
       const el = en.target;
-      io.unobserve(el);
-      el.classList.add("in");
-      // hand the element back to its normal styles (e.g. card hover lift) once the fade is done
-      setTimeout(() => { el.classList.remove("reveal", "in"); el.style.removeProperty("--d"); }, 1300);
+      const fast = speed > 1800;
+      // everything above this element appears at once (after a jump there are no empty gaps when scrolling back)
+      for (const other of [...pending]) {
+        if (other !== el && other.getBoundingClientRect().bottom < el.getBoundingClientRect().top) show(other, true);
+      }
+      show(el, fast);
     }
-  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  }, { threshold: 0, rootMargin: "0px 0px 25% 0px" });
+
   for (const sel of groups) {
     document.querySelectorAll(sel).forEach((el, i) => {
-      if (el.getBoundingClientRect().top < innerHeight) return; // visible at load: no animation
+      if (el.getBoundingClientRect().top < innerHeight * 1.25) return; // on screen (or almost) at load: no animation
       el.classList.add("reveal");
-      el.style.setProperty("--d", `${Math.min(i, 4) * 70}ms`); // items in a row arrive one after another
+      el.style.setProperty("--d", `${Math.min(i, 3) * 45}ms`); // items in a row arrive one after another
+      pending.push(el);
       io.observe(el);
     });
   }
