@@ -117,10 +117,95 @@ if (typedEl) {
   else typeLoop();
 }
 
-// Mobile menu
+// Mobile menu (slides in; closes on link click, outside click or Escape)
 const navLinks = document.getElementById("navLinks");
-document.getElementById("menuBtn").addEventListener("click", () => navLinks.classList.toggle("open"));
-navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
+const menuBtn = document.getElementById("menuBtn");
+const setMenu = open => { navLinks.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", String(open)); };
+menuBtn.addEventListener("click", e => { e.stopPropagation(); setMenu(!navLinks.classList.contains("open")); });
+navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+document.addEventListener("click", e => { if (!navLinks.contains(e.target)) setMenu(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+// ===== Custom dropdown =====
+// Replaces the browser's own option list (which can't be styled) with one in the site's style.
+// The real <select> stays in the form, so the value is submitted as before.
+function enhanceSelect(select) {
+  const wrap = document.createElement("div");
+  wrap.className = "dd";
+  select.replaceWith(wrap);
+  wrap.append(select);
+  select.tabIndex = -1;
+  select.setAttribute("aria-hidden", "true");
+
+  const btn = document.createElement("button");
+  btn.type = "button"; btn.className = "dd-btn";
+  btn.setAttribute("aria-haspopup", "listbox"); btn.setAttribute("aria-expanded", "false");
+  const label = document.createElement("span");
+  btn.append(label);
+  btn.insertAdjacentHTML("beforeend", '<svg class="dd-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>');
+
+  const list = document.createElement("ul");
+  list.className = "dd-list"; list.setAttribute("role", "listbox");
+  const opts = [...select.options].map((o, i) => {
+    const li = document.createElement("li");
+    li.className = "dd-opt"; li.setAttribute("role", "option"); li.textContent = o.text; li.dataset.i = i;
+    li.addEventListener("click", () => { choose(i); close(); btn.focus(); });
+    li.addEventListener("mousemove", () => highlight(i));
+    list.append(li);
+    return li;
+  });
+  wrap.append(btn, list);
+
+  let active = select.selectedIndex;
+  function sync() {
+    label.textContent = select.options[select.selectedIndex].text;
+    opts.forEach((li, i) => li.setAttribute("aria-selected", String(i === select.selectedIndex)));
+  }
+  function highlight(i) { active = i; opts.forEach((li, j) => li.classList.toggle("active", j === i)); }
+  function choose(i) { select.selectedIndex = i; select.dispatchEvent(new Event("change", { bubbles: true })); sync(); }
+  function open() { wrap.classList.add("open"); btn.setAttribute("aria-expanded", "true"); highlight(select.selectedIndex); }
+  function close() { wrap.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }
+  const isOpen = () => wrap.classList.contains("open");
+
+  btn.addEventListener("click", () => (isOpen() ? close() : open()));
+  btn.addEventListener("keydown", e => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      if (!isOpen()) return open();
+      highlight((active + (e.key === "ArrowDown" ? 1 : opts.length - 1)) % opts.length);
+    } else if (e.key === "Enter" || e.key === " ") {
+      if (isOpen()) { e.preventDefault(); choose(active); close(); }
+    } else if (e.key === "Escape" || e.key === "Tab") close();
+  });
+  document.addEventListener("click", e => { if (!wrap.contains(e.target)) close(); });
+  select.form?.addEventListener("reset", () => setTimeout(sync)); // after sending, show the default again
+  sync();
+}
+document.querySelectorAll(".form select").forEach(enhanceSelect);
+
+// ===== Gentle fade-up as sections scroll into view =====
+// Runs once per element. Anything already on screen when the page loads is left alone (no load flicker).
+if (!reduceMotion && "IntersectionObserver" in window) {
+  const groups = [".section-head", ".projects > .project", ".cards > .card", ".steps > li", ".contact > *"];
+  const io = new IntersectionObserver(entries => {
+    for (const en of entries) {
+      if (!en.isIntersecting) continue;
+      const el = en.target;
+      io.unobserve(el);
+      el.classList.add("in");
+      // hand the element back to its normal styles (e.g. card hover lift) once the fade is done
+      setTimeout(() => { el.classList.remove("reveal", "in"); el.style.removeProperty("--d"); }, 1300);
+    }
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  for (const sel of groups) {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      if (el.getBoundingClientRect().top < innerHeight) return; // visible at load: no animation
+      el.classList.add("reveal");
+      el.style.setProperty("--d", `${Math.min(i, 4) * 70}ms`); // items in a row arrive one after another
+      io.observe(el);
+    });
+  }
+}
 
 // Contact form → sends to the Nulldex inbox; falls back to the visitor's email app if that fails
 const T = HR
