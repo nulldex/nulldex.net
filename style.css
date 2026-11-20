@@ -35,8 +35,9 @@
   --radius: 12px;
   --ease: cubic-bezier(.2,.7,.2,1);
   /* light is the only accent: a soft white glow on hover / focus */
-  --glow: 0 0 0 1px rgba(255,255,255,.06), 0 0 22px -6px rgba(255,255,255,.22);
-  --btn-glow: 0 0 0 1px rgba(255,255,255,.12), 0 10px 32px -10px rgba(255,255,255,.45);
+  /* layered soft shadows: each one faint, together a smooth fade with no visible edge */
+  --glow: 0 0 0 1px rgba(255,255,255,.06), 0 0 6px rgba(255,255,255,.04), 0 0 18px rgba(255,255,255,.05), 0 0 42px rgba(255,255,255,.04);
+  --btn-glow: 0 0 0 1px rgba(255,255,255,.10), 0 0 4px rgba(255,255,255,.10), 0 0 14px rgba(255,255,255,.09), 0 4px 30px rgba(255,255,255,.08), 0 8px 60px rgba(255,255,255,.06);
   --focus: 0 0 0 3px rgba(255,255,255,.08);
   --focus-border: #6a6a6a;
   --slant: -24deg;
